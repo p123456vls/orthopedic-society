@@ -1,0 +1,20 @@
+{
+    "devhipfour": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-hipfour-devhipfour-133457-authRole",
+            "UnauthRoleArn": "arn:aws:iam::831627391400:role/amplify-hipfour-devhipfour-133457-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::831627391400:role/amplify-hipfour-devhipfour-133457-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-hipfour-devhipfour-133457-deployment",
+            "UnauthRoleName": "amplify-hipfour-devhipfour-133457-unauthRole",
+            "StackName": "amplify-hipfour-devhipfour-133457",
+            "StackId": "arn:aws:cloudformation:us-west-2:831627391400:stack/amplify-hipfour-devhipfour-133457/18f51e50-6ed8-11ea-bdcf-06a318773a24",
+            "AmplifyAppId": "d22jsm2shchapa"
+        },
+        "categories": {
+            "auth": {
+                "hipfour1f3f06e1": {}
+            }
+        }
+    }
+}

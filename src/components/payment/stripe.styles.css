@@ -1,0 +1,18 @@
+#root > div.ant-card.ant-card-bordered > div.ant-card-body > button{
+    width:100%!important;
+    border-radius: 0!important;
+    border: none!important;
+    cursor: pointer!important;
+}
+#root > div.ant-card.ant-card-bordered > div.ant-card-body > button > span{
+    background-image: none!important;
+    background-color: #2490ff!important ;
+    border-radius: 0!important;
+    font-size: 12px!important;
+    font-weight: 400!important;
+    text-align: center!important;
+    text-transform: uppercase!important;
+    letter-spacing: 1.1px!important;
+    border: none!important;
+
+}

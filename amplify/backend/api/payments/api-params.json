@@ -1,0 +1,49 @@
+{
+    "paths": [
+        {
+            "name": "/charge",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/contact",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/list",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
+        }
+    ],
+    "resourceName": "payments",
+    "apiName": "payments",
+    "functionArns": [
+        {
+            "lambdaFunction": "payments"
+        }
+    ],
+    "privacy": {
+        "auth": 0,
+        "unauth": 0,
+        "authRoleName": "amplify-hipfour-devhipfour-133457-authRole",
+        "unAuthRoleName": "amplify-hipfour-devhipfour-133457-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "payments",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ],
+    "uuid": "95c3fd38"
+}

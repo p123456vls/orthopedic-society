@@ -1,0 +1,108 @@
+body {
+    padding-top: 54px !important;
+    padding-left: 83px !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        padding: 5px !important;
+        margin: 97px 0 !important;
+    }
+    .ant-tooltip-inner {
+        display: none !important;
+    }
+}
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#phone_line_number {
+    height: 44px;
+}
+
+.ant-anchor-ink::before,
+#root > div.Form__formContainer___1GA3x >
+div > div > div.Section__sectionBody___ihqqd >
+div.Section__sectionFooter___1T54C >
+span.Section__sectionFooterSecondaryContent___Nj41Q >
+div > div > div > div > div.ant-anchor-ink > span{
+    display: none!important;
+}
+
+textarea{
+    border-color:#c4c4c4;
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+}
+
+#root > div.sc-fzoXzr.kESxtB >
+div.Section__container___3YYTG >
+div > div{
+    margin-top: -40px;
+}
+
+.SelectInput__selectInput___3efO4 > select {
+    height: 44px;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    padding: 8px 32px 6px 27px !important;
+
+}
+
+#root > div > div > div > div.Section__sectionBody___ihqqd > div:nth-child(n) >
+div.Input__inputLabel___3VF0S {
+    display: none;
+}
+
+.Input__input___3e_bf {
+    margin-bottom: -10px !important;
+    border-top: transparent !important;
+    border-left: transparent !important;
+    border-right: transparent !important;
+    border-radius: 0 !important;
+    padding: 10px 0 !important;
+}
+#root > div.sc-fzokOt.eROkGT > input{
+    margin:9px 16px!important;
+}
+#root > div.sc-fzoXzr.kESxtB > div.sc-fzpjYC.hGnfnA{
+    padding:10px!important;
+}
+.Input__inputLabel___3VF0S {
+    display: none !important;
+}
+
+#phone_line_number {
+    padding: 0 20px 0px !important;
+}
+
+.Hint__hint___2XngB {
+    padding-top: 10px !important;
+    margin-top: 10px !important;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+
+#root > div.amplify-container {
+    padding-top: 15px !important;
+}
+
+#root > div.Section__container___3YYTG >
+div > div > div.Section__sectionFooter___1T54C >
+span.Section__sectionFooterSecondaryContent___Nj41Q {
+    color: black;
+}
+
+
+
