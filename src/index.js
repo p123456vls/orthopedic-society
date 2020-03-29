@@ -1,8 +1,42 @@
+// import React from 'react';
+// import ReactDOM from 'react-dom';
+// import { Provider } from 'react-redux';
+// import './index.css';
+// import { createStore, applyMiddleware, combineReducers } from 'redux';
+// import userReducer from './redux/user/user.reducer';
+// import stepsReducer from "./redux/step/step.reducer";
+// import paymentsReducer from "./redux/payments/payment.reducer";
+// import searchBoxReducer from "./redux/searchBox/searchBox.reducer";
+// import tableDataReducer from "./redux/tableData/tableData.reducer";
+//
+// import logger from 'redux-logger';
+// import 'antd/dist/antd.css';
+// import ReduxThunk from 'redux-thunk';
+// import App from './App';
+//
+// const rootReducer = combineReducers({
+//   user: userReducer,
+//   step:stepsReducer,
+//   payment:paymentsReducer,
+//   search:searchBoxReducer,
+//   table:tableDataReducer
+// });
+//
+// const store = createStore(rootReducer,
+//   applyMiddleware(ReduxThunk, logger));
+//
+// ReactDOM.render(
+//   <Provider store={store}>
+//     <App />
+//   </Provider>,
+//   document.getElementById('root')
+// );
+
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider } from 'react-redux';
+import {Provider} from 'react-redux';
 import './index.css';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
+import {createStore, applyMiddleware, combineReducers} from 'redux';
 import userReducer from './redux/user/user.reducer';
 import stepsReducer from "./redux/step/step.reducer";
 import paymentsReducer from "./redux/payments/payment.reducer";
@@ -14,20 +48,23 @@ import 'antd/dist/antd.css';
 import ReduxThunk from 'redux-thunk';
 import App from './App';
 
-const rootReducer = combineReducers({
+const appReducers = combineReducers({
   user: userReducer,
-  step:stepsReducer,
-  payment:paymentsReducer,
-  search:searchBoxReducer,
-  table:tableDataReducer
+  step: stepsReducer,
+  payment: paymentsReducer,
+  search: searchBoxReducer,
+  table: tableDataReducer
 });
 
-const store = createStore(rootReducer,
-  applyMiddleware(ReduxThunk, logger));
+const store = process.env.NODE_ENV === 'development' ?
+  createStore(appReducers,
+    applyMiddleware(ReduxThunk, logger)) :
+  createStore(appReducers,
+    applyMiddleware(ReduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <App/>
   </Provider>,
   document.getElementById('root')
 );
