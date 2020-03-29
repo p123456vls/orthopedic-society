@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const awsServerlessExpressMiddleware = require('aws-serverless-express/middleware');
 require('dotenv').config();
-const stripe = require('stripe')("sk_test_W8AS0WR7K5XiN5aP9h6qe0jo00ev9aMxC8");
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 const AWS = require('aws-sdk');
 
 const config = {

@@ -63,7 +63,7 @@
 				"Timeout": "25",
 				"Code": {
 					"S3Bucket": "amplify-hipfour-devhipfour-133457-deployment",
-					"S3Key": "amplify-builds/payments-70706d6d69762f4a5433-build.zip"
+					"S3Key": "amplify-builds/payments-426f4a4f47645075466c-build.zip"
 				}
 			}
 		},
