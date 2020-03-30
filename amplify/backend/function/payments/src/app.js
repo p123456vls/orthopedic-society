@@ -52,8 +52,9 @@ const chargeHandler = async (req, res, next) => {
 };
 
 const emailHandler = (req, res) => {
-  const {charge, customerEmail} = req;
+  const {charge, customerEmail, description} = req;
 
+if(description==='Donation'){
   ses.sendEmail({
     Source: config.adminEmail,
     Destination: {
@@ -66,7 +67,45 @@ const emailHandler = (req, res) => {
       Body: {
         Html: {
           Charset: 'UTF-8',
-          Data: `<h3>Re: Hippocratic Orthopaedic Society Membership Dues - Automatic Membership Dues Renewal!</h3><br>
+          Data:`
+          <h3>Re: Hippocratic Orthopaedic Society Donation </h3><br>
+           <p>Dear ${charge.billing_details.name},</p>
+           <p>Thank you for your donation ! </p>
+           <p>Your payment of $${(parseFloat(charge.amount) / 100).toFixed(2)}
+                    has been processed successfully!</p><br>
+           <pre style="color: #2490ff;">The Hippocratic Orthopaedic Society, Inc</pre>
+          `
+        }
+      }
+    }
+
+  }, (err, data) => {
+    if (err) {
+      return res.status(500).json({error: err})
+    }
+    res.json({
+      message: "Payment Processed Successfully",
+      charge,
+      data
+    });
+  });
+
+}//end if
+else {
+  ses.sendEmail({
+    Source: config.adminEmail,
+    Destination: {
+      ToAddresses: [config.adminEmail, customerEmail]
+    },
+    Message: {
+      Subject: {
+        Data: 'Payment Details'
+      },
+      Body: {
+        Html: {
+          Charset: 'UTF-8',
+          Data:
+            `<h3>Re: Hippocratic Orthopaedic Society Membership Dues - Automatic Membership Dues Renewal!</h3><br>
                  <p>Dear ${charge.billing_details.name},</p>
                  <p>
                  Thank you for your membership with the Hippocratic Society. The Board of Directors 
@@ -122,6 +161,8 @@ const emailHandler = (req, res) => {
       data
     });
   });
+}
+
 };
 
 //get all users already paid
