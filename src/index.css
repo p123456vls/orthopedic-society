@@ -5,15 +5,21 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+p {
+    font-size: 110%;
+}
+
 @media screen and (max-width: 600px) {
     body {
         padding: 5px !important;
         margin: 97px 0 !important;
     }
+
     .ant-tooltip-inner {
         display: none !important;
     }
 }
+
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -28,12 +34,12 @@ code {
 div > div > div.Section__sectionBody___ihqqd >
 div.Section__sectionFooter___1T54C >
 span.Section__sectionFooterSecondaryContent___Nj41Q >
-div > div > div > div > div.ant-anchor-ink > span{
-    display: none!important;
+div > div > div > div > div.ant-anchor-ink > span {
+    display: none !important;
 }
 
-textarea{
-    border-color:#c4c4c4;
+textarea {
+    border-color: #c4c4c4;
     width: 100%;
     border-top: none;
     border-right: none;
@@ -42,7 +48,7 @@ textarea{
 
 #root > div.sc-fzoXzr.kESxtB >
 div.Section__container___3YYTG >
-div > div{
+div > div {
     margin-top: -40px;
 }
 
@@ -68,12 +74,15 @@ div.Input__inputLabel___3VF0S {
     border-radius: 0 !important;
     padding: 10px 0 !important;
 }
-#root > div.sc-fzokOt.eROkGT > input{
-    margin:9px 16px!important;
+
+#root > div.sc-fzokOt.eROkGT > input {
+    margin: 9px 16px !important;
 }
-#root > div.sc-fzoXzr.kESxtB > div.sc-fzpjYC.hGnfnA{
-    padding:10px!important;
+
+#root > div.sc-fzoXzr.kESxtB > div.sc-fzpjYC.hGnfnA {
+    padding: 10px !important;
 }
+
 .Input__inputLabel___3VF0S {
     display: none !important;
 }

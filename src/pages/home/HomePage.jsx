@@ -35,7 +35,7 @@ const Home = () => {
         <ImgLabel>Vegas meeting 2019</ImgLabel>
         <span>
           <Paragraph>
-            <strong>The Hellenic American Hippocratic Society</strong> is a private,
+            <strong>The Hippocratic Society, Inc </strong> is a private,
             non-profit society of physicians and scientists whose
             main interest is the study of the musculoskeletal system.
             Members of the society are United States or Canada or Greek

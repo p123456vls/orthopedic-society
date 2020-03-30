@@ -17,3 +17,7 @@ export const Container = styled.div`
 export const Title = styled.h3`
  margin-bottom: 30px;
 `;
+export const ContactLink = styled.span`
+  cursor:pointer;
+  color: #2490ff;
+`;

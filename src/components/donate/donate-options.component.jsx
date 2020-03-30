@@ -51,6 +51,8 @@ const DonateOptions = () => {
       <Card>
         <Title><Icon type="trophy"/> Recognition Levels</Title>
         <SubTitle>Your donation empower us to continue our mission!</SubTitle>
+        <SubTitle>Please choose one of the options below:</SubTitle>
+
         <InnerContainer>
           <Flex>
             <CustomPopConfirm

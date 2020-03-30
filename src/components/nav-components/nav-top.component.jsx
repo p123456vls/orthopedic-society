@@ -19,7 +19,7 @@ const NavTopComponent = () => {
         }}>
           <LogoIcon/>
         </LogoContainer>
-        <Header>Hellenic American Hippocratic Society</Header>
+        <Header>Hippocratic Orthopedic Society, Inc</Header>
         {
           (isSignedIn) &&
           <SingOutField onClick={signOutAmplify}>Sign out</SingOutField>

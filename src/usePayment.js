@@ -35,7 +35,7 @@ const usePayment = (props) => {
             metadata: {key: sub, ...restUserData}
           }
         });
-       //console.log('stripePayment ', stripePayment)
+       // console.log('stripePayment ', stripePayment)
       notification.success({
         message: 'Your payment processed successfully!'
       });

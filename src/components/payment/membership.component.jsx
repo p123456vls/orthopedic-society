@@ -1,11 +1,14 @@
 import React from 'react';
 import StripeCheckout from "react-stripe-checkout";
 import './stripe.styles.css';
-import { Spin} from "antd";
-import {Container, Title, Wrapper} from "./payment.styles";
+import {Spin} from "antd";
+import {ContactLink, Container, Title, Wrapper} from "./payment.styles";
 import usePayment from "../../usePayment";
+import {useHistory} from "react-router-dom";
+
 
 const MembershipComponent = () => {
+  const history = useHistory();
   const {
     stripeConfig,
     handleCharge,
@@ -13,7 +16,7 @@ const MembershipComponent = () => {
     restUserData,
     stepOne,
     stepTwo
-  } = usePayment({amount: 10000, description: 'Annual Membership', isMemberShip:true});
+  } = usePayment({amount: 10000, description: 'Annual Membership', isMemberShip: true});
 
   return !loading ? (
       <Wrapper display={(stepOne && !stepTwo) ? 'block' : 'none'}>
@@ -33,6 +36,15 @@ const MembershipComponent = () => {
             allowRememberMe
             label={'Annual Membership $100.00'}
           />
+          <br/>
+          <br/>
+          <b><small>Please note this is a recurrent annual payment. You have the option of cancelling future payments by
+            <ContactLink
+              onClick={() => history.push('/contact-us')}
+            >
+              {' '} contacting us
+            </ContactLink> or email us at hellenicamericanhippocratic@gmail.com
+          </small></b>
         </Container>
       </Wrapper>)
     :
