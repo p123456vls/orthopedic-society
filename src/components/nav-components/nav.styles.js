@@ -13,7 +13,8 @@ export const MenuContainer = styled.ul`
   @media screen and (max-width: 600px) {
     height: 48px;
     width:100%;
-    padding-top: 10px;
+    padding-top: 13px;
+    text-align: center;
   }
 `;
 
@@ -27,8 +28,8 @@ export const MenuItem = styled.li`
     cursor:pointer;
     
   @media screen and (max-width: 600px) {
-   display: inline-flex;
-   padding: 0 3% 0 4.4%;
+   display: inline-block;
+   padding: 0 5% 0 4.4%;
    }
 
    @media screen and (min-width: 600px) {
