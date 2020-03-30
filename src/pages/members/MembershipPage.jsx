@@ -1,6 +1,6 @@
 import React from 'react';
 import StepsComponent from "../../components/steps/steps.component";
-import MemberAuth from "../../components/form/member-auth.component";
+import MemberAuth from "../../components/member-auth/member-auth.component";
 import MembershipComponent from "../../components/payment/membership.component";
 import {useSelector} from "react-redux";
 import ReviewComponent from "../../components/payment-details/payment-details.component";
