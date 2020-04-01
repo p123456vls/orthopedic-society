@@ -10,7 +10,7 @@ const ReviewComponent = () => {
   const {signOutAmplify} = useAuth();
   const history = useHistory();
   const paymentData = useSelector(state => state.payment);
-  const {paymentType, createdAt, paymentAmount} = paymentData.payment;
+  const {paymentType, createdAt, paymentAmount, validThrough} = paymentData.payment;
   const {first_name, last_name, phone, address, role, email} = paymentData.user;
 
   const handleClick = async () => {
@@ -21,7 +21,7 @@ const ReviewComponent = () => {
   return (
     <>
       <Container>
-        <Card title="Payment Details" bordered style={{width: "100%"}}>
+        <Card title="Membership Subscription Details" bordered style={{width: "100%"}}>
           <>
             <p><strong>Name:</strong> {first_name}{' '}{last_name}</p>
             <p><strong>Address:</strong> {address}</p>
@@ -30,7 +30,8 @@ const ReviewComponent = () => {
             <p><strong>Role:</strong> {role}</p>
             <p><strong>Phone:</strong> {phone}</p>
             <p><strong>Email:</strong> {email}</p>
-            <p><strong>Date:</strong> {new Date(createdAt).toLocaleString()}</p>
+            <p><strong>Created:</strong> {new Date(createdAt).toLocaleString()}</p>
+            <p><strong>Ends:</strong> {new Date(validThrough).toLocaleString()}</p>
           </>
           <Button
             type="ghost"

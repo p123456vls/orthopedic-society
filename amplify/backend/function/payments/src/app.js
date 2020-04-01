@@ -51,23 +51,22 @@ const chargeHandler = async (req, res, next) => {
   }
 };
 
-const emailHandler = (req, res) => {
-  const {charge, customerEmail, description} = req;
+const chargeEmailHandler = (req, res) => {
+  const {charge, customerEmail} = req;
 
-if(description==='Donation'){
-  ses.sendEmail({
-    Source: config.adminEmail,
-    Destination: {
-      ToAddresses: [config.adminEmail, customerEmail]
-    },
-    Message: {
-      Subject: {
-        Data: 'Payment Details'
+    ses.sendEmail({
+      Source: config.adminEmail,
+      Destination: {
+        ToAddresses: [config.adminEmail, customerEmail]
       },
-      Body: {
-        Html: {
-          Charset: 'UTF-8',
-          Data:`
+      Message: {
+        Subject: {
+          Data: 'Payment Details'
+        },
+        Body: {
+          Html: {
+            Charset: 'UTF-8',
+            Data: `
           <h3>Re: Hippocratic Orthopaedic Society Donation </h3><br>
            <p>Dear ${charge.billing_details.name},</p>
            <p>Thank you for your donation ! </p>
@@ -75,24 +74,26 @@ if(description==='Donation'){
                     has been processed successfully!</p><br>
            <pre style="color: #2490ff;">The Hippocratic Orthopaedic Society, Inc</pre>
           `
+          }
         }
       }
-    }
 
-  }, (err, data) => {
-    if (err) {
-      return res.status(500).json({error: err})
-    }
-    res.json({
-      message: "Payment Processed Successfully",
-      charge,
-      data
+    }, (err, data) => {
+      if (err) {
+        return res.status(500).json({error: err})
+      }
+      res.json({
+        message: "Payment Processed Successfully",
+        charge,
+        data
+      });
     });
-  });
+};
 
-}//end if
-else {
-  ses.sendEmail({
+
+app.post('/membershipEmail', (req,res)=>{
+  const {name, amount, customerEmail} = req.body;
+   ses.sendEmail({
     Source: config.adminEmail,
     Destination: {
       ToAddresses: [config.adminEmail, customerEmail]
@@ -106,7 +107,7 @@ else {
           Charset: 'UTF-8',
           Data:
             `<h3>Re: Hippocratic Orthopaedic Society Membership Dues - Automatic Membership Dues Renewal!</h3><br>
-                 <p>Dear ${charge.billing_details.name},</p>
+                 <p>Dear ${name},</p>
                  <p>
                  Thank you for your membership with the Hippocratic Society. The Board of Directors 
                  thanks you for your continued commitment to our growing society. You have paid your
@@ -157,26 +158,25 @@ else {
     }
     res.json({
       message: "Payment Processed Successfully",
-      charge,
       data
     });
   });
-}
 
-};
+});
+
 
 //get all users already paid
 app.get('/list', async (req, res) => {
   try {
-    const list = await stripe.charges.list({limit: 10000});
+    const list = await stripe.subscriptions.list({limit: 10000});
     res.json(list);
   } catch (e) {
-    return res.status(500).json({error: e})
+    return res.json({errorDisplayAllSubscriptions: e.raw.message});
   }
 });
 
 // post new charge and send email to user and admin email
-app.post('/charge', chargeHandler, emailHandler);
+app.post('/charge', chargeHandler, chargeEmailHandler);
 
 
 app.post('/contact', (req, res) => {
@@ -216,6 +216,97 @@ app.post('/contact', (req, res) => {
   });
 });
 
+// create a new customer to create subscription in 5 steps===============================
+app.post('/customer', async (req, res) => {
+  let customer;
+  try {
+    customer = await stripe.customers.create(
+      {
+        id: req.body.id,
+        email: req.body.email,
+        name: `${req.body.first_name}  ${req.body.last_name}`,
+        description: req.body.description,
+        metadata: req.body.metadata
+      });
+    await res.json({body: req.body, response: customer});
+  } catch (e) {
+    return res.json({error: e.raw.message});
+  }
+
+});
+
+// check if current customer exists
+app.get('/customer/:id', async (req, res) => {
+
+  let currentCustomer;
+  try {
+    currentCustomer = await stripe.customers.retrieve(`${req.params.id}`);
+    await res.json({response: currentCustomer})
+    //await res.json({response: req.params.id});
+  } catch (e) {
+    return res.json({response: false})
+    // return res.status(500).json({error: e})
+  }
+});
+
+const createPaymentMethod = async (req, res, next) => {
+  const {token, customer, user} = req.body;
+  let method;
+  try {
+    method = await stripe.paymentMethods.create(
+      {
+        type: 'card',
+        card: {token: token}
+      });
+    //await res.json({result: method})
+
+    req.paymentMethod = method.id;
+    req.customer = customer;
+    req.user = user;
+    next();
+
+  } catch (e) {
+    return res.json({createPaymentMethodError: e})
+  }
+};
+
+const attachPaymentMethod = async (req, res, next) => {
+  const {paymentMethod, customer, user} = req;
+
+  try {
+    await stripe.paymentMethods.attach(
+      paymentMethod, {customer: customer}
+    );
+    req.paymentMethod = paymentMethod;
+    req.customer = customer;
+    req.user = user;
+    next();
+
+  } catch (e) {
+    return res.json({attachPaymentMethodError: e})
+  }
+};
+
+const subscription = async (req, res) => {
+  const {customer, paymentMethod, user} = req;
+  let membershipSubscription;
+  try {
+    membershipSubscription = await stripe.subscriptions.create({
+      customer: customer,
+      items: [{plan: 'plan_H0xYdTPJyXZQ5L'}],
+      default_payment_method: paymentMethod,
+      metadata: user
+    });
+    await res.json({response: membershipSubscription});
+  } catch (e) {
+    return res.json({membershipSubscription: e})
+  }
+};
+
+//membership payment subscription for one year
+app.post('/subscription', createPaymentMethod,
+  attachPaymentMethod, subscription);
+// end create subscription===============================================================
 
 app.listen(3000, function () {
   console.log("App started")

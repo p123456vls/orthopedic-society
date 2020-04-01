@@ -4,7 +4,8 @@ const initialState = {
   payment: {
     paymentAmount: '',
     paymentType: '',
-    createdAt: ''
+    createdAt: '',
+    validThrough:''
   },
   user: {
     last_name: '',
@@ -23,7 +24,7 @@ const paymentReducer = (state = initialState, action) => {
     case MEMBERSHIP_PAYMENT:
     case DONATION_PAYMENT:
 
-      const {amount, type, createdAt} = action.payload.payment;
+      const {amount, type, createdAt,validThrough} = action.payload.payment;
       const {
         last_name,
         first_name,
@@ -38,7 +39,8 @@ const paymentReducer = (state = initialState, action) => {
         payment: {
           paymentAmount: amount,
           paymentType: type,
-          createdAt: createdAt
+          createdAt: createdAt,
+          validThrough:validThrough
         },
         user: {
           last_name: last_name,

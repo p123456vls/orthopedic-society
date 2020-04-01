@@ -34,6 +34,13 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/membershipEmail",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "payments",
@@ -59,5 +66,5 @@
             ]
         }
     ],
-    "uuid": "c09a3a1f"
+    "uuid": "85876a24"
 }

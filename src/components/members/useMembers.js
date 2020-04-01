@@ -19,12 +19,9 @@ const useMembers = () => {
     const fetchTableData = async () => {
       dispatch(fetchDataTableBegin());
       try {
-        const paymentsList = await API.get('payments', '/list', '');
-        const currentMembersData = paymentsList.data.map(d => d.metadata);
-        //filter data they do have key, meaning they are memberships
-        // otherwise they are donations
-        const valid = currentMembersData.filter(d => d.key);
-        const allData = [...imported, ...valid];
+        const subscriptionsPaymentsList = await API.get('payments', '/list', '');
+        const currentMembersData = subscriptionsPaymentsList.data.map(d => d.metadata);
+        const allData = [...imported, ...currentMembersData];
         const uniqueMembers = uniqueMemberPayments(allData);
         setMembersData(uniqueMembers);
         dispatch(fetchDataTableSuccess(uniqueMembers));

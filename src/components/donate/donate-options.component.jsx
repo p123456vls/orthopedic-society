@@ -9,7 +9,8 @@ import {
 } from "./donate.styles";
 import CustomPopConfirm from "./custom-popconfirm";
 import DonationPaymentComponent from "./donation-payment.component";
-import {Icon} from "antd";
+import {Icon, Spin} from "antd";
+import usePayment from "../../usePayment";
 
 const DonateOptions = () => {
 
@@ -41,11 +42,22 @@ const DonateOptions = () => {
     isNaN(input) ? '' : input
   );
 
-  return (
+  const {
+    stripeConfig,
+    handleCharge,
+    loading,
+    restUserData,
+  } = usePayment({amount: state.amount * 100, description: 'Donation', isMemberShip: false});
+
+
+  return !loading? (
     <Container>
       <div id={'stripe'} style={{display: 'none'}}>
         <DonationPaymentComponent
           amount={parseFloat(state.amount)}
+          stripeConfig={stripeConfig}
+          handleCharge={handleCharge}
+          restUserData={restUserData}
         />
       </div>
       <Card>
@@ -89,6 +101,15 @@ const DonateOptions = () => {
         </InnerContainer>
       </Card>
     </Container>
+  ): (
+    <Spin
+      tip={'processing payment... please wait'}
+      style={{
+        width: '100%',
+        padding: '8% 22% 10% 20%',
+        opacity:0.7
+      }}
+    />
   );
 };
 

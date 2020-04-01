@@ -1,9 +1,10 @@
 import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import {API} from "aws-amplify";
 import {notification} from "antd";
 import * as actions from "./redux/payments/payment.actions";
 import {stepTwoCompleted} from "./redux/step/step.actions";
+import {createCharge, emailSubscribedMember, subscription} from "./stripeHelper";
+
 require('dotenv').config();
 
 const usePayment = (props) => {
@@ -17,64 +18,41 @@ const usePayment = (props) => {
     publishableApiKey: process.env.REACT_APP_KEY
   };
 
+  const handleMemberShipCharge = async (token) => {
+    setLoading(true);
+    const subscriptionPayment = await subscription(token, sub, restUserData);
+    if (subscriptionPayment.response.id) {
+      await emailSubscribedMember(restUserData, subscriptionPayment);
+    }
+    //update the state to send to the payment details
+    const memberShipPayment = {
+      amount: subscriptionPayment.response.plan.amount_decimal,
+      type: "Membership Payment",
+      createdAt: new Date(subscriptionPayment.response.created * 1000),
+      validThrough: new Date(subscriptionPayment.response.current_period_end * 1000),
+    };
+    const memberPayment = {
+      payment: memberShipPayment,
+      user: subscriptionPayment.response.metadata
+    };
+    notification.success({
+      message: 'Your payment processed successfully!'
+    });
+
+    dispatch(actions.memberShipPayment(memberPayment));
+    dispatch(stepTwoCompleted());
+    setLoading(false);
+  };
+
   const handleCharge = async (token) => {
-    let stripePayment;
-    try {
-      setLoading(true);
-      stripePayment = await API.post(
-        'payments',
-        '/charge',
-        {
-          body: {
-            token,
-            charge: {
-              currency: stripeConfig.currency,
-              amount: props.amount,
-              description: props.description,
-            },
-            metadata: {key: sub, ...restUserData}
-          }
-        });
-       // console.log('stripePayment ', stripePayment)
-      notification.success({
-        message: 'Your payment processed successfully!'
-      });
-
-      setLoading(false);
-
-    } catch (e) {
-      console.log(e);
-      notification.error({
-        message: 'Your payment could not be processed',
-        placement: 'topRight'
-      });
-      setLoading(false);
-      return;
-    }
-    // if it is a membership payment dispatch actions
-    // to know if the user created step two
-    // which is the payment so that we can show
-    // payment details, else it is a donation so we
-    // send only email confirmation
-    if (props.isMemberShip) {
-      const memberShipPayment = {
-        amount: stripePayment.charge.amount,
-        type: stripePayment.charge.description,
-        createdAt: new Date(stripePayment.charge.created * 1000)
-      };
-      const memberPayment = {
-        payment: memberShipPayment,
-        user: stripePayment.charge.metadata
-      };
-      dispatch(actions.memberShipPayment(memberPayment));
-      dispatch(stepTwoCompleted());
-    }
-
+    setLoading(true);
+    await createCharge(token, stripeConfig, sub, restUserData, props);
     setLoading(false);
   };
 
   return {
     handleCharge,
+    handleMemberShipCharge,
     loading,
     stepOne,
     stepTwo,

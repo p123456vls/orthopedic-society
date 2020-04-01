@@ -11,30 +11,30 @@ const MembershipComponent = () => {
   const history = useHistory();
   const {
     stripeConfig,
-    handleCharge,
+    handleMemberShipCharge,
     loading,
     restUserData,
     stepOne,
     stepTwo
-  } = usePayment({amount: 10000, description: 'Annual Membership', isMemberShip: true});
+  } = usePayment({amount: 10220, description: 'Annual Membership', isMemberShip: true});
 
   return !loading ? (
       <Wrapper display={(stepOne && !stepTwo) ? 'block' : 'none'}>
         <Container>
           <Title>Μembership Payment</Title>
           <StripeCheckout
-            token={handleCharge}
+            token={handleMemberShipCharge}
             email={restUserData.email}
             currency={stripeConfig.currency}
             stripeKey={stripeConfig.publishableApiKey}
             name={'Hellenic American Hippocratic Society '}
             description={'Annual MemberShip'}
-            amount={10000}
+            amount={10220}
             billingAddress
             // shippingAddress
             locale={'auto'}
             allowRememberMe
-            label={'Annual Membership $100.00'}
+            label={'Annual Membership $102.20'}
           />
           <br/>
           <br/>
@@ -53,6 +53,7 @@ const MembershipComponent = () => {
         style={{
           width: '100%',
           padding: '8% 22% 10% 20%',
+          opacity:0.7
         }}
       />
     );

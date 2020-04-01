@@ -4,6 +4,7 @@ import {useDispatch} from "react-redux";
 import {signInUser} from "../redux/user/user.actions";
 import {resetSteps, stepOneCompleted} from "../redux/step/step.actions";
 import {notification} from "antd";
+import {createCustomerIfNotExists} from "../stripeHelper";
 
 
 const useEvents = () => {
@@ -39,6 +40,8 @@ const useEvents = () => {
         };
 
         if (currentEvent === 'signIn') {
+          createCustomerIfNotExists(user)
+            .then(r => {});
           dispatch(signInUser(user));
           dispatch(stepOneCompleted());
         }
