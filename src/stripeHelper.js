@@ -90,7 +90,8 @@ export const createCharge = async (token, stripeConfig, sub, restUserData, props
       });
     // console.log('stripePayment ', stripePayment)
     notification.success({
-      message: 'Your payment processed successfully!'
+      message: 'Thank You!',
+      description:'Your payment processed successfully! You will receive an email soon for your records.'
     });
    return !isLoading;
   } catch (e) {
