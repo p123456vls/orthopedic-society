@@ -3,10 +3,12 @@ body {
     padding-left: 83px !important;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-align: justify;
 }
 
 p {
     font-size: 110%;
+    text-align: justify;
 }
 
 @media screen and (max-width: 600px) {
