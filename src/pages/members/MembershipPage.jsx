@@ -8,7 +8,7 @@ import {Main, Title, TitleContainer} from "../../index.styles";
 import withIcon from "../../withIcon";
 import {Colors} from "../../constants/colors";
 import {UserAddOutlined} from '@ant-design/icons';
-const Icon = withIcon(UserAddOutlined, Colors.primary);
+const AboutIcon = withIcon(UserAddOutlined, {color:Colors.primary});
 
 const MembershipPage = () => {
   const {stepOne, stepTwo} = useSelector(state => state.step);
@@ -17,7 +17,7 @@ const MembershipPage = () => {
   return (
     <>
       <TitleContainer>
-        <Title><Icon/> Membership</Title>
+        <Title><AboutIcon/> Membership</Title>
       </TitleContainer>
       <Main>
         <StepsComponent/>

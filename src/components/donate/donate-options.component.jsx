@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {
   Container,
   InnerContainer,
-  Flex,
+  OptionsSection,
   Card,
   Title,
-  SubTitle,
+  SubTitle, HiddenPaymentForm,
 } from "./donate.styles";
 import CustomPopConfirm from "./custom-popconfirm";
 import DonationPaymentComponent from "./donation-payment.component";
 import {Icon, Spin} from "antd";
-import usePayment from "../../usePayment";
+import usePayment from "../payment/usePayment";
 
 const DonateOptions = () => {
 
@@ -52,21 +52,21 @@ const DonateOptions = () => {
 
   return !loading? (
     <Container>
-      <div id={'stripe'} style={{display: 'none'}}>
+      <HiddenPaymentForm id={'stripe'} >
         <DonationPaymentComponent
           amount={parseFloat(state.amount)}
           stripeConfig={stripeConfig}
           handleCharge={handleCharge}
           restUserData={restUserData}
         />
-      </div>
+      </HiddenPaymentForm>
       <Card>
         <Title><Icon type="trophy"/> Recognition Levels</Title>
         <SubTitle>Your donation empower us to continue our mission!</SubTitle>
         <SubTitle>Please choose one of the options below:</SubTitle>
 
         <InnerContainer>
-          <Flex>
+          <OptionsSection>
             <CustomPopConfirm
               handleClick={handleClick}
               handleChange={handleChange}
@@ -81,8 +81,8 @@ const DonateOptions = () => {
               input={state.inputTwoK}
               title={'Founder $2000-$5000'}
             />
-          </Flex>
-          <Flex>
+          </OptionsSection>
+          <OptionsSection>
             <CustomPopConfirm
               handleClick={handleClick}
               handleChange={handleChange}
@@ -97,7 +97,7 @@ const DonateOptions = () => {
               input={state.inputZero}
               title={'Friend $0-$1000'}
             />
-          </Flex>
+          </OptionsSection>
         </InnerContainer>
       </Card>
     </Container>

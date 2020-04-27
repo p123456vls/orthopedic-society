@@ -8,7 +8,6 @@ body {
 
 p {
     font-size: 110%;
-    text-align: justify;
 }
 
 @media screen and (max-width: 600px) {
@@ -47,6 +46,9 @@ textarea {
     border-right: none;
     border-left: none;
 }
+textarea.post {
+    margin-bottom:20px
+}
 
 #root > div.sc-fzoXzr.kESxtB >
 div.Section__container___3YYTG >
@@ -63,7 +65,8 @@ div > div {
 
 }
 
-#root > div > div > div > div.Section__sectionBody___ihqqd > div:nth-child(n) >
+#root > div > div > div >
+div.Section__sectionBody___ihqqd > div:nth-child(n) >
 div.Input__inputLabel___3VF0S {
     display: none;
 }
@@ -114,6 +117,23 @@ div > div > div.Section__sectionFooter___1T54C >
 span.Section__sectionFooterSecondaryContent___Nj41Q {
     color: black;
 }
-
-
+li.title{
+    visibility: hidden;
+}
+#root > div:nth-child(2) > div >
+div.ant-tabs-content.ant-tabs-content-no-animated.ant-tabs-top-content >
+div.ant-tabs-tabpane.ant-tabs-tabpane-active > div.Form__formContainer___1GA3x >
+div > div > div.Section__sectionBody___ihqqd >
+div.Form__formContainer___1GA3x{
+    margin-bottom:0;
+}
+.ant-modal-mask{
+    background-color: #0000002b!important;
+}
+.ant-popover-inner {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+.ant-popover-title{
+    color:white!important;
+}
 

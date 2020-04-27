@@ -1,5 +1,5 @@
 import React from 'react';
-import VisibilitySensor from "react-visibility-sensor";
+// import VisibilitySensor from "react-visibility-sensor";
 import {Card, Skeleton} from "antd";
 import Img from 'react-image';
 
@@ -8,18 +8,19 @@ const ImageView = ({imgSrc, name, role, profession}) => {
     <Card
       style={{width: 240, margin: '0 10px 0 10px'}}
       cover={
-        <VisibilitySensor>
           <Img
+            // style={{width:238,height:338,
+            //   objectFit:'cover'
+            // }}
             alt={name}
             src={imgSrc}
             loader={
               <Skeleton
                 active avatar={{
-                shape:'square'
-              }} />
+                shape: 'square'
+              }}/>
             }
           />
-        </VisibilitySensor>
       }
     >
       <h3>{role}</h3>

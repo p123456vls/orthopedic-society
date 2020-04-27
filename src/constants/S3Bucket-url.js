@@ -1,0 +1,1 @@
+export const urlPrefix = `https://userimagesbucket133457-devhipfour.s3-us-west-2.amazonaws.com/public/`;

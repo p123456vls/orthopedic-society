@@ -55,7 +55,7 @@ export const emailSubscribedMember = async (restUserData, subscriptionPayment) =
   try {
     await API.post(
       'payments',
-      '/membershipEmail',
+      '/subscription/membershipEmail',
       {
         body: {
           name: restUserData.first_name + ' ' + restUserData.last_name,
@@ -88,7 +88,6 @@ export const createCharge = async (token, stripeConfig, sub, restUserData, props
           metadata: {key: sub, ...restUserData}
         }
       });
-    // console.log('stripePayment ', stripePayment)
     notification.success({
       message: 'Thank You!',
       description:'Your payment processed successfully! You will receive an email soon for your records.'

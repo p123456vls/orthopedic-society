@@ -42,18 +42,22 @@ import stepsReducer from "./redux/step/step.reducer";
 import paymentsReducer from "./redux/payments/payment.reducer";
 import searchBoxReducer from "./redux/searchBox/searchBox.reducer";
 import tableDataReducer from "./redux/tableData/tableData.reducer";
+import postReducer from "./redux/blog/post/post.reducer";
 
 import logger from 'redux-logger';
 import 'antd/dist/antd.css';
 import ReduxThunk from 'redux-thunk';
 import App from './App';
+import commentsReducer from "./redux/blog/comment/comment.reducer";
 
 const appReducers = combineReducers({
   user: userReducer,
   step: stepsReducer,
   payment: paymentsReducer,
   search: searchBoxReducer,
-  table: tableDataReducer
+  table: tableDataReducer,
+  post:postReducer,
+  comment:commentsReducer
 });
 
 const store = process.env.NODE_ENV === 'development' ?

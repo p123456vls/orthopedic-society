@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {Link} from 'react-router-dom';
 
 export const MenuContainer = styled.ul`
   list-style-type: none;
@@ -8,7 +9,7 @@ export const MenuContainer = styled.ul`
   height: 100%;
   width:80px;
   overflow: auto;
-  padding:0px;
+  padding:0;
   
   @media screen and (max-width: 600px) {
     height: 48px;
@@ -18,7 +19,7 @@ export const MenuContainer = styled.ul`
   }
 `;
 
-export const MenuItem = styled.li`
+export const MenuItem = styled(Link)`
     display: block;
     color: ${props => props.color};
     padding-left: 32px;
@@ -29,7 +30,7 @@ export const MenuItem = styled.li`
     
   @media screen and (max-width: 600px) {
    display: inline-block;
-   padding: 0 5% 0 4.4%;
+   padding: 0 3% 0 4.4%;
    }
 
    @media screen and (min-width: 600px) {
@@ -57,7 +58,7 @@ export const ContainerTop = styled.div`
   left: 0;
   right: 0;
   display:flex;
-  z-index: 1;
+  z-index: 3;
 
 `;
 

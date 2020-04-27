@@ -1,12 +1,11 @@
 import styled from 'styled-components';
-import Img from 'react-image';
 
-export const ImageContainer = styled(Img)`
-  width: 100%;
-  max-width: 600px;
-  height: auto;
-  margin:auto;
-`;
+export const imageContainer = {
+  width: '100%',
+  maxWidth: 600,
+  height: 'auto',
+  margin: 'auto'
+}
 
 export const ImgLabel = styled.div`
     width: 156px;

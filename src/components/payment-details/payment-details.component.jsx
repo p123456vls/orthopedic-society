@@ -2,12 +2,12 @@ import React from 'react';
 import {Button, Card} from "antd";
 import {useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
-import {useAuth} from "../../useAuth";
+import {useSignOut} from "../../useSignOut";
 import {Container} from "./payment-details.styles";
 
 
 const ReviewComponent = () => {
-  const {signOutAmplify} = useAuth();
+  const {signOutAmplify} = useSignOut();
   const history = useHistory();
   const paymentData = useSelector(state => state.payment);
   const {paymentType, createdAt, paymentAmount, validThrough} = paymentData.payment;

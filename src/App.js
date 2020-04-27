@@ -15,31 +15,36 @@ import HippocratesPage from "./pages/hippocrates/HippocratesPage";
 import DonatePage from "./pages/donate/DonatePage";
 import AllMembersPage from "./pages/members/all-members/AllMembersPage";
 import Footer from "./components/footer/footer.component";
-
+import PostsPage from "./pages/blog/posts/PostPage";
+import PostShow from "./components/blog/post/post-show/post-show.component";
+import {useLoginStatus} from "./useLoginStatus";
 import useEvents from "./auth-amplify/useEvents";
+import useFetchPosts from "./components/blog/post/all-posts/useFetchPosts";
 
 import Amplify from 'aws-amplify';
 import aws_config from './aws-exports';
-import {useAuth} from "./useAuth";
-
 Amplify.configure(aws_config);
 
 const App = () => {
 
+  useLoginStatus();
   useEvents();
-  useAuth();
+  useFetchPosts();
+
 
   return (
     <Router>
       <Nav/>
       <Switch>
-        <Route exact path='/' component={Home}/>
-        <Route path='/about' component={AboutPage}/>
-        <Route path='/membership' component={MembershipPage}/>
-        <Route path='/all-members' component={AllMembersPage}/>
-        <Route path='/contact-us' component={ContactPage}/>
-        <Route path='/hippocrates' component={HippocratesPage}/>
-        <Route path='/donate' component={DonatePage}/>
+        <Route exact path='/'><Home/></Route>
+        <Route path='/about' ><AboutPage/></Route>
+        <Route path='/membership' ><MembershipPage/></Route>
+        <Route path='/all-members'><AllMembersPage/></Route>
+        <Route path='/contact-us' ><ContactPage/></Route>
+        <Route path='/hippocrates'><HippocratesPage/></Route>
+        <Route path='/donate' ><DonatePage/></Route>
+        <Route exact path='/posts'><PostsPage/></Route>
+        <Route path={'/posts/:postId'}><PostShow/></Route>
       </Switch>
       <Footer/>
     </Router>

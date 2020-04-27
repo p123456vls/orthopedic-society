@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <Spacer/>
       <Container>
-        &#169; {new Date().getFullYear()} Hellenic American Hippocratic Orthopaedic Society
+        &#169; {new Date().getFullYear()} Hippocratic Orthopaedic Society, Inc
       </Container>
     </>
   );
