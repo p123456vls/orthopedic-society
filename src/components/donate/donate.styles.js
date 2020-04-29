@@ -4,6 +4,10 @@ export const IconContainer = styled.div`
  display: grid;
 `;
 
+export const PopConfirmTitle = styled.p`
+   color:white;
+`;
+
 export const Title = styled.h2`
  margin-left: 13px;
   @media screen and (max-width: 600px) {
@@ -24,7 +28,7 @@ export const Card = styled.div`
   padding:20px;
   zoom:1;
   @media screen and (max-width: 600px) {
-    padding: 0px;
+    padding: 0;
   }
 `;
 
@@ -37,6 +41,10 @@ export const DollarIcon = styled.p`
   position: absolute;
 `;
 
+export const HiddenPaymentForm = styled.div`
+  display: none;
+`;
+
 export const Container = styled.div`
     max-width: 600px;
     margin: 50px auto 23px auto;
@@ -46,7 +54,8 @@ export const Container = styled.div`
              0 0  0 2px rgb(255,255,255),
              0.3em 0.3em 1em rgba(0,0,0,0.3);
     @media screen and (max-width: 600px) {
-      max-width: 380px
+      max-width: 380px;
+      box-shadow:none;
     }
 `;
 
@@ -54,12 +63,12 @@ export const InnerContainer = styled.div`
   padding:10px;
 `;
 
-export const Flex = styled.div`
+export const OptionsSection = styled.div`
  display:flex;
 `;
 
 export const CardItem = styled.h3`
-    padding: 30px 10px;
+    margin: 30px 10px;
     width: 50%;
     text-decoration: underline;
     &:hover{

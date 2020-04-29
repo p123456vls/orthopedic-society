@@ -3,7 +3,7 @@ import StripeCheckout from "react-stripe-checkout";
 import './stripe.styles.css';
 import {Spin} from "antd";
 import {ContactLink, Container, Title, Wrapper} from "./payment.styles";
-import usePayment from "../../usePayment";
+import usePayment from "./usePayment";
 import {useHistory} from "react-router-dom";
 
 

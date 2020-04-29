@@ -1,6 +1,6 @@
 import React from 'react';
-import {Input} from "antd";
 import useMembers from "../useMembers";
+import {Input} from "./searchbar-styles";
 
 const SearchBar = () => {
   const {handleChange} = useMembers();
@@ -8,7 +8,6 @@ const SearchBar = () => {
       <Input
         onChange={handleChange}
         placeholder="search by name/role/address"
-        style={{margin: '11px 0', width: 300}}
       />
      );
 };

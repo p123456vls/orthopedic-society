@@ -3,35 +3,27 @@ import {
   Column,
   MainSection,
   HeaderTitle,
-  ImageContainer,
   Paragraph,
   Row,
   Wrapper,
   H3White,
-  ImgLabel
+  ImgLabel,
+  imageContainer
 } from "./homePage.styles";
-import {Icon, Spin} from "antd";
-import VisibilitySensor from 'react-visibility-sensor';
+import {Icon} from "antd";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const Home = () => {
   return (
     <>
       <MainSection>
-        <VisibilitySensor>
-          <ImageContainer
-            src={'https://res.cloudinary.com/djagznbnb/image/upload/q_auto:low/v1584814573/vegasMeeting.png'}
-            alt={'vegas meeting hippocratic society'}
-            loader={
-              <Spin
-                tip={'loading'}
-                style={{
-                  marginTop: '5%',
-                  marginLeft: '45%',
-                  height: '100%'
-                }}
-              />}
-          />
-        </VisibilitySensor>
+        <LazyLoadImage
+          src={'./vegasMeeting.png'}
+          alt={'vegas meeting hippocratic society'}
+          effect={'blur'}
+          style={imageContainer}
+        />
         <ImgLabel>Vegas meeting 2019</ImgLabel>
         <span>
           <Paragraph>

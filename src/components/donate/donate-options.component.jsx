@@ -2,15 +2,16 @@ import React, {useState} from 'react';
 import {
   Container,
   InnerContainer,
-  Flex,
+  OptionsSection,
   Card,
   Title,
-  SubTitle,
+  SubTitle, HiddenPaymentForm,
 } from "./donate.styles";
-import CustomPopConfirm from "./custom-popconfirm";
-import DonationPaymentComponent from "./donation-payment.component";
+import loadable from "@loadable/component";
 import {Icon, Spin} from "antd";
-import usePayment from "../../usePayment";
+import usePayment from "../payment/usePayment";
+const CustomPopConfirm = loadable(() => import( "./custom-popconfirm"));
+const DonationPaymentComponent = loadable(() => import( "./donation-payment.component"));
 
 const DonateOptions = () => {
 
@@ -50,23 +51,23 @@ const DonateOptions = () => {
   } = usePayment({amount: state.amount * 100, description: 'Donation', isMemberShip: false});
 
 
-  return !loading? (
+  return !loading ? (
     <Container>
-      <div id={'stripe'} style={{display: 'none'}}>
+      <HiddenPaymentForm id={'stripe'}>
         <DonationPaymentComponent
           amount={parseFloat(state.amount)}
           stripeConfig={stripeConfig}
           handleCharge={handleCharge}
           restUserData={restUserData}
         />
-      </div>
+      </HiddenPaymentForm>
       <Card>
         <Title><Icon type="trophy"/> Recognition Levels</Title>
         <SubTitle>Your donation empower us to continue our mission!</SubTitle>
         <SubTitle>Please choose one of the options below:</SubTitle>
 
         <InnerContainer>
-          <Flex>
+          <OptionsSection>
             <CustomPopConfirm
               handleClick={handleClick}
               handleChange={handleChange}
@@ -81,8 +82,8 @@ const DonateOptions = () => {
               input={state.inputTwoK}
               title={'Founder $2000-$5000'}
             />
-          </Flex>
-          <Flex>
+          </OptionsSection>
+          <OptionsSection>
             <CustomPopConfirm
               handleClick={handleClick}
               handleChange={handleChange}
@@ -97,17 +98,17 @@ const DonateOptions = () => {
               input={state.inputZero}
               title={'Friend $0-$1000'}
             />
-          </Flex>
+          </OptionsSection>
         </InnerContainer>
       </Card>
     </Container>
-  ): (
+  ) : (
     <Spin
       tip={'processing payment... please wait'}
       style={{
         width: '100%',
         padding: '8% 22% 10% 20%',
-        opacity:0.7
+        opacity: 0.7
       }}
     />
   );

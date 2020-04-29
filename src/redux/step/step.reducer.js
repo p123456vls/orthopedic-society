@@ -12,12 +12,11 @@ const stepsReducer = (state = initialState, action) => {
         ...state,
         stepOne: true
       };
-    case STEP_TWO: {
+    case STEP_TWO:
       return {
         ...state,
         stepTwo: true
       };
-    }
     case RESET:
       return {
         initialState

@@ -32,4 +32,3 @@ export const Main = styled.div`
   max-width: 1100px;
   margin:auto;
 `;
-

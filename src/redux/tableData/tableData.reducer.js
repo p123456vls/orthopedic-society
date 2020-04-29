@@ -11,12 +11,13 @@ const tableDataReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_TABLE_DATA_BEGIN:
       return {
-         ...state,loading: true
+        ...state, loading: true
       };
     case FETCH_TABLE_DATA_SUCCESS:
       const paymentData = action.payload;
       return {
-         ...state,items: paymentData, loading: false
+        ...state, items: paymentData,
+        loading: false
       };
     case FETCH_TABLE_DATA_FAILURE:
       return {

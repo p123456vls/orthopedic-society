@@ -1,14 +1,15 @@
 import React from 'react';
-import StepsComponent from "../../components/steps/steps.component";
-import MemberAuth from "../../components/member-auth/member-auth.component";
-import MembershipComponent from "../../components/payment/membership.component";
 import {useSelector} from "react-redux";
-import ReviewComponent from "../../components/payment-details/payment-details.component";
 import {Main, Title, TitleContainer} from "../../index.styles";
 import withIcon from "../../withIcon";
 import {Colors} from "../../constants/colors";
 import {UserAddOutlined} from '@ant-design/icons';
-const Icon = withIcon(UserAddOutlined, Colors.primary);
+import loadable from "@loadable/component";
+const AboutIcon = withIcon(UserAddOutlined, {color:Colors.primary});
+const StepsComponent = loadable(() => import( "../../components/steps/steps.component"));
+const MemberAuth = loadable(() => import("../../components/member-auth/member-auth.component"));
+const MembershipComponent = loadable(() => import( "../../components/payment/membership.component"));
+const ReviewComponent   = loadable(() => import("../../components/payment-details/payment-details.component"));
 
 const MembershipPage = () => {
   const {stepOne, stepTwo} = useSelector(state => state.step);
@@ -17,7 +18,7 @@ const MembershipPage = () => {
   return (
     <>
       <TitleContainer>
-        <Title><Icon/> Membership</Title>
+        <Title><AboutIcon/> Membership</Title>
       </TitleContainer>
       <Main>
         <StepsComponent/>

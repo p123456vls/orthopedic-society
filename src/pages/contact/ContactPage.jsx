@@ -1,16 +1,19 @@
 import React from 'react';
+import loadable from "@loadable/component";
 import {Title, TitleContainer} from "../../index.styles";
-import ContactForm from "../../components/contact/contact.component";
 import {ContactsTwoTone} from '@ant-design/icons';
 import withIcon from "../../withIcon";
-const Icon = withIcon(ContactsTwoTone);
+import {Colors} from "../../constants/colors";
+
+const ContactIcon = withIcon(ContactsTwoTone, {color: Colors.primary});
+const ContactForm = loadable(() => import( "../../components/contact/contact.component"));
 
 const ContactPage = () => {
-  return(
+  return (
     <>
       <TitleContainer>
         <Title>
-          <Icon /> Contact
+          <ContactIcon/> Contact
         </Title>
       </TitleContainer>
       <ContactForm/>

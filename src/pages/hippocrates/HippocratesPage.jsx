@@ -3,10 +3,9 @@ import {Body, Main, SubTitle, Title, TitleContainer} from "../../index.styles";
 import {UserOutlined} from '@ant-design/icons';
 import withIcon from "../../withIcon";
 import {Colors} from "../../constants/colors";
-import {Spin} from "antd";
-import VisibilitySensor from "react-visibility-sensor";
+import {Skeleton} from "antd";
 import {ImageContainer, ImageFooterText} from "./hippocrates.styles";
-const Icon = withIcon(UserOutlined, Colors.primary);
+const Icon = withIcon(UserOutlined, {color:Colors.primary});
 
 const HippocratesPage = () => {
   return (
@@ -17,19 +16,16 @@ const HippocratesPage = () => {
       <Main>
         <Body>
           <SubTitle>History</SubTitle>
-          <VisibilitySensor>
             <ImageContainer
               src={'./hippocrates.jpg'}
+              alt={'hippocrates'}
               loader={
-                <Spin
-                  tip={'loading'}
-                  style={{
-                    marginTop: '5%',
-                    height: '100%'
-                  }}
-                />}
+                <Skeleton
+                  active avatar={{
+                  shape: 'square'
+                }}/>
+              }
             />
-          </VisibilitySensor>
           <ImageFooterText> Hippocrates' – Statue found on
             the island of Kos, near the Odeion.
             Second half of the 2nd Century B.C.
@@ -135,19 +131,16 @@ const HippocratesPage = () => {
             today by medical graduates about to enter medical practice.
           </p>
           <SubTitle>The “Oath”</SubTitle>
-          <VisibilitySensor>
             <ImageContainer
               src={'./oath.png'}
+              alt={'hippocratic oath'}
               loader={
-                <Spin
-                  tip={'loading'}
-                  style={{
-                    marginTop: '5%',
-                    height: '100%'
-                  }}
-                />}
+                <Skeleton
+                  active avatar={{
+                  shape: 'square'
+                }}/>
+              }
             />
-          </VisibilitySensor>
           <p>
             By Apollo (the physician), by Asclepius (god of healing), by Hygeia (god of health), by Panacea (god of
             remedy), and all the gods and goddesses, together as witnesses, I hereby swear that I will carry out,

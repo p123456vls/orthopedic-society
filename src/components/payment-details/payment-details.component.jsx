@@ -2,19 +2,17 @@ import React from 'react';
 import {Button, Card} from "antd";
 import {useSelector} from "react-redux";
 import {useHistory} from 'react-router-dom';
-import {useAuth} from "../../useAuth";
 import {Container} from "./payment-details.styles";
 
 
 const ReviewComponent = () => {
-  const {signOutAmplify} = useAuth();
+
   const history = useHistory();
   const paymentData = useSelector(state => state.payment);
   const {paymentType, createdAt, paymentAmount, validThrough} = paymentData.payment;
   const {first_name, last_name, phone, address, role, email} = paymentData.user;
 
-  const handleClick = async () => {
-    await signOutAmplify();
+  const handleClick = () => {
     history.push('/');
   };
 

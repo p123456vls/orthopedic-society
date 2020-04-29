@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardItem, DollarIcon, IconContainer, InputNumber} from "./donate.styles";
+import {CardItem, DollarIcon, IconContainer, InputNumber, PopConfirmTitle} from "./donate.styles";
 import {Icon, Popconfirm} from "antd";
 
 const CustomPopConfirm = (props) => {
@@ -8,7 +8,7 @@ const CustomPopConfirm = (props) => {
     <Popconfirm
       icon={// icon is used here for the header of the pop confirm
         <IconContainer>
-          <p>Enter your amount</p>
+          <PopConfirmTitle>Enter your amount</PopConfirmTitle>
           <DollarIcon>&#36;</DollarIcon>
           <InputNumber
             pattern="[0-9]*"

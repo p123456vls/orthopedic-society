@@ -1,9 +1,9 @@
 import {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {notification} from "antd";
-import * as actions from "./redux/payments/payment.actions";
-import {stepTwoCompleted} from "./redux/step/step.actions";
-import {createCharge, emailSubscribedMember, subscription} from "./stripeHelper";
+import * as actions from "../../redux/payments/payment.actions";
+import {stepTwoCompleted} from "../../redux/step/step.actions";
+import {createCharge, createCustomerIfNotExists, emailSubscribedMember, subscription} from "../../stripeHelper";
 
 require('dotenv').config();
 
@@ -12,7 +12,8 @@ const usePayment = (props) => {
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
   const {stepOne, stepTwo} = useSelector(state => state.step);
-  const {sub, ...restUserData} = useSelector(state => state.user);
+  const user = useSelector(state => state.user);
+  const {sub, ...restUserData} = user;
   const stripeConfig = {
     currency: 'USD',
     publishableApiKey: process.env.REACT_APP_KEY
@@ -20,10 +21,22 @@ const usePayment = (props) => {
 
   const handleMemberShipCharge = async (token) => {
     setLoading(true);
-    const subscriptionPayment = await subscription(token, sub, restUserData);
-    if (subscriptionPayment.response.id) {
-      await emailSubscribedMember(restUserData, subscriptionPayment);
+    let subscriptionPayment;
+    try {
+      await createCustomerIfNotExists(user)
+    } catch (e) {
+      console.log(e)
     }
+    try {
+      subscriptionPayment = await subscription(token, sub, restUserData);
+      if (subscriptionPayment && subscriptionPayment.response.id) {
+        await emailSubscribedMember(restUserData, subscriptionPayment);
+      }
+    } catch (e) {
+      console.log(e)
+    }
+
+
     //update the state to send to the payment details
     const memberShipPayment = {
       amount: subscriptionPayment.response.plan.amount_decimal,

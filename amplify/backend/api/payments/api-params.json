@@ -41,6 +41,27 @@
             "privacy": {
                 "open": true
             }
+        },
+        {
+            "name": "/case",
+            "lambdaFunction": "case",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/newcase",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
+        },
+        {
+            "name": "/newcomment",
+            "lambdaFunction": "payments",
+            "privacy": {
+                "open": true
+            }
         }
     ],
     "resourceName": "payments",
@@ -48,6 +69,9 @@
     "functionArns": [
         {
             "lambdaFunction": "payments"
+        },
+        {
+            "lambdaFunction": "case"
         }
     ],
     "privacy": {
@@ -64,7 +88,15 @@
                 "Name",
                 "Arn"
             ]
+        },
+        {
+            "category": "function",
+            "resourceName": "case",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
         }
     ],
-    "uuid": "85876a24"
+    "uuid": "ac9be404"
 }

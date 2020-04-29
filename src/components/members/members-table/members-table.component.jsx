@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table} from "antd";
-import {columns} from "../importedData";
+import {columns} from "../../../importedMembersData";
 import {useSelector} from "react-redux";
 
 const MembersTable = () => {

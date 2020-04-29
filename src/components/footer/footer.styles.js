@@ -5,11 +5,11 @@ export const Container = styled.div`
   left: 0;
   bottom: 0;
   width:100% ;
-  background-color:#fafafa ;
+  background-color:#f4f4f4 ;
   text-align:center ;
   padding: 6px;
   font-size:small ;
-  color: #898d91 
+  color: #070707 
 `;
 export const Spacer = styled.div`
   width:100%;

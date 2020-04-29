@@ -1,25 +1,23 @@
 import React from 'react';
-import VisibilitySensor from "react-visibility-sensor";
 import {Card, Skeleton} from "antd";
-import Img from 'react-image';
+import loadable from "@loadable/component";
+const  Img = loadable(() => import('react-image'));
 
 const ImageView = ({imgSrc, name, role, profession}) => {
   return (
     <Card
       style={{width: 240, margin: '0 10px 0 10px'}}
       cover={
-        <VisibilitySensor>
           <Img
             alt={name}
             src={imgSrc}
             loader={
               <Skeleton
                 active avatar={{
-                shape:'square'
-              }} />
+                shape: 'square'
+              }}/>
             }
           />
-        </VisibilitySensor>
       }
     >
       <h3>{role}</h3>

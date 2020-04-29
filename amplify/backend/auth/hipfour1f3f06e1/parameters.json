@@ -1,6 +1,6 @@
 {
     "identityPoolName": "hipfour1f3f06e1_identitypool_1f3f06e1",
-    "allowUnauthenticatedIdentities": false,
+    "allowUnauthenticatedIdentities": true,
     "resourceNameTruncated": "hipfou1f3f06e1",
     "userPoolName": "hipfour1f3f06e1_userpool_1f3f06e1",
     "autoVerifiedAttributes": [

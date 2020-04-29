@@ -1,17 +1,17 @@
 import React from 'react';
+import loadable from "@loadable/component";
 import {Body, Main, Row, SubTitle, Title, TitleContainer} from "../../index.styles";
-import ImageView from "../../components/img/image.component";
 import {InfoCircleTwoTone} from '@ant-design/icons';
 import withIcon from "../../withIcon";
 import {Colors} from "../../constants/colors";
-
-const Icon = withIcon(InfoCircleTwoTone, Colors.primary);
+const ImageView =loadable(() => import(  "../../components/img/image.view.component"));
+const AboutIcon = withIcon(InfoCircleTwoTone,{color:Colors.primary});
 
 const AboutPage = () => {
   return (
     <>
       <TitleContainer>
-        <Title><Icon/> About</Title>
+        <Title><AboutIcon/> About</Title>
       </TitleContainer>
       <Main>
         <Body>

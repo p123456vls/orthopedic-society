@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_UP, SIGN_OUT } from "./user.types";
+import {SIGN_IN, SIGN_UP, SIGN_OUT} from "./user.types";
 
 export const signInUser = (user) => ({
   type: SIGN_IN,
