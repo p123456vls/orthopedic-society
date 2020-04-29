@@ -13,8 +13,7 @@ import {
 } from "aws-amplify-react/lib/Amplify-UI/Amplify-UI-Components-React";
 import {Colors} from "../../../../constants/colors";
 import {CancelButton, Footer, ImagePreviewSection, SubmitButton, theme} from "../../form.styles";
-import ImagePreview from "./image-preview.component";
-
+import * as Load from '../../load';
 
 const NewPost = ({membersEmails}) => {
   const {
@@ -59,7 +58,7 @@ const NewPost = ({membersEmails}) => {
               onPick={handlePick.bind(this)}
               theme={theme}/>
             <ImagePreviewSection>
-              <ImagePreview state={state}/>
+              <Load.ImagePreview state={state}/>
             </ImagePreviewSection>
             <div style={state.progressUpload > 0 ? {visibility: 'visible'} : {visibility: 'hidden'}}>
             <span style={{color:Colors.primary}}>Remaining pictures to upload: {state.imageCount }</span>

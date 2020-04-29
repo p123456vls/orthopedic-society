@@ -1,10 +1,12 @@
 import React from 'react';
-import NewPost from "../../../components/blog/post/new-post/new-post.component";
+import loadable from '@loadable/component';
 import {Tabs} from "antd";
 import {Container, Title} from "./postPage.styles";
-import MemberAuth from "../../../components/member-auth/member-auth.component";
 import {useSelector} from "react-redux";
-import AllPostsList from "../../../components/blog/post/all-posts/all-posts-list.component";
+
+const MemberAuth = loadable(() => import("../../../components/member-auth/member-auth.component"));
+const NewPost = loadable(() => import( "../../../components/blog/post/new-post/new-post.component"));
+const AllPostsList = loadable(() => import(  "../../../components/blog/post/all-posts/all-posts-list.component"));
 
 const PostsPage = ({membersEmails}) => {
   const {isSignedIn} = useSelector(state => state.user);

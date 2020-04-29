@@ -1,9 +1,10 @@
 import React from 'react';
-import SearchBar from "../../../components/members/members-table/searchbar.component";
-import MembersTable from "../../../components/members/members-table/members-table.component";
 import {TitleContainer, Title, Main} from "../../../index.styles";
 import {Icon} from "antd";
 import {Colors} from "../../../constants/colors";
+import loadable from "@loadable/component";
+const SearchBar = loadable(() => import("../../../components/members/members-table/searchbar.component"));
+const MembersTable=loadable(() => import( "../../../components/members/members-table/members-table.component"));
 
 const AllMembersPage = () => {
 

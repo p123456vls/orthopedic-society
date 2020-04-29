@@ -19,23 +19,7 @@ const Image = ({imgKey, width = '450px', maxHeight = '500px', height, paddingRig
         paddingRight: paddingRight,
       }}
     />
-
-    // <S3Image
-    //   imgKey={imgKey}
-    //   theme={{
-    //     photoImg: {
-    //       width: width,
-    //       maxHeight: maxHeight,
-    //       height:height,
-    //       objectFit: 'cover',
-    //       paddingBottom: 2,
-    //       opacity:opacity,
-    //       paddingRight:paddingRight,
-    //     }
-    //   }}
-    // />
   );
-
 };
 
 export default trackWindowScroll(Image);

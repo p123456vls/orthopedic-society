@@ -18,6 +18,7 @@ const HippocratesPage = () => {
           <SubTitle>History</SubTitle>
             <ImageContainer
               src={'./hippocrates.jpg'}
+              alt={'hippocrates'}
               loader={
                 <Skeleton
                   active avatar={{
@@ -132,6 +133,7 @@ const HippocratesPage = () => {
           <SubTitle>The “Oath”</SubTitle>
             <ImageContainer
               src={'./oath.png'}
+              alt={'hippocratic oath'}
               loader={
                 <Skeleton
                   active avatar={{

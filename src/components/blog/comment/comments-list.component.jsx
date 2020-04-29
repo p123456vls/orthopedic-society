@@ -1,9 +1,10 @@
 import React from 'react';
+import loadable from '@loadable/component'
 import {CommentSpan, CommentsTitle, IconDiv} from "../post/all-posts/all-posts.styles";
 import UserOutlined from "@ant-design/icons/lib/icons/UserOutlined";
 import withIcon from "../../../withIcon";
 import {Colors} from "../../../constants/colors";
-import CommentDeleteConfirm from "./comment-delete-confirm.component";
+const CommentDeleteConfirm = loadable(() => import("./comment-delete-confirm.component"));
 
 const UserIcon = withIcon(UserOutlined, {color: Colors.primary});
 

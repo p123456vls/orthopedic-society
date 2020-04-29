@@ -7,10 +7,11 @@ import {
   Title,
   SubTitle, HiddenPaymentForm,
 } from "./donate.styles";
-import CustomPopConfirm from "./custom-popconfirm";
-import DonationPaymentComponent from "./donation-payment.component";
+import loadable from "@loadable/component";
 import {Icon, Spin} from "antd";
 import usePayment from "../payment/usePayment";
+const CustomPopConfirm = loadable(() => import( "./custom-popconfirm"));
+const DonationPaymentComponent = loadable(() => import( "./donation-payment.component"));
 
 const DonateOptions = () => {
 
@@ -50,9 +51,9 @@ const DonateOptions = () => {
   } = usePayment({amount: state.amount * 100, description: 'Donation', isMemberShip: false});
 
 
-  return !loading? (
+  return !loading ? (
     <Container>
-      <HiddenPaymentForm id={'stripe'} >
+      <HiddenPaymentForm id={'stripe'}>
         <DonationPaymentComponent
           amount={parseFloat(state.amount)}
           stripeConfig={stripeConfig}
@@ -101,13 +102,13 @@ const DonateOptions = () => {
         </InnerContainer>
       </Card>
     </Container>
-  ): (
+  ) : (
     <Spin
       tip={'processing payment... please wait'}
       style={{
         width: '100%',
         padding: '8% 22% 10% 20%',
-        opacity:0.7
+        opacity: 0.7
       }}
     />
   );

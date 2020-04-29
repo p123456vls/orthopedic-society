@@ -1,10 +1,11 @@
 import React from 'react';
-import DonateOptions from "../../components/donate/donate-options.component";
 import {TitleContainer, Title} from "../../index.styles";
 import {FundProjectionScreenOutlined} from '@ant-design/icons';
 import withIcon from "../../withIcon";
 import {Colors} from "../../constants/colors";
+import loadable from "@loadable/component";
 const DonateIcon = withIcon(FundProjectionScreenOutlined,{color:Colors.primary});
+const DonateOptions = loadable(() => import( "../../components/donate/donate-options.component"));
 
 const DonatePage = () => {
 

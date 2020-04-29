@@ -1,7 +1,7 @@
 import React from 'react';
-// import VisibilitySensor from "react-visibility-sensor";
 import {Card, Skeleton} from "antd";
-import Img from 'react-image';
+import loadable from "@loadable/component";
+const  Img = loadable(() => import('react-image'));
 
 const ImageView = ({imgSrc, name, role, profession}) => {
   return (
@@ -9,9 +9,6 @@ const ImageView = ({imgSrc, name, role, profession}) => {
       style={{width: 240, margin: '0 10px 0 10px'}}
       cover={
           <Img
-            // style={{width:238,height:338,
-            //   objectFit:'cover'
-            // }}
             alt={name}
             src={imgSrc}
             loader={

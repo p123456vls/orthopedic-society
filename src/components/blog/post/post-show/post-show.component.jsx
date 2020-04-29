@@ -10,17 +10,14 @@ import {
 } from "../all-posts/all-posts.styles";
 import {Container, LoadingPost} from "./post-show.styles";
 import {useDispatch, useSelector} from "react-redux";
-import Image from "../all-posts/image.component";
-import MoreImagesList from "../all-posts/moreImagesList.component";
-import CommentModal from "../../comment/comment-modal.component";
-import BackButton from "./back-button.component";
 import useNewPostShow from "./useNewPostShow";
 import {sortByDate} from "../../../../helpers";
-import CommentsList from "../../comment/comments-list.component";
 import {showPost} from "../../../../redux/blog/post/post.actions";
 import withIcon from "../../../../withIcon";
 import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
 import {urlPrefix} from "../../../../constants/S3Bucket-url";
+import * as Load from '../../load';
+
 
 const LoadingIcon = withIcon(LoadingOutlined, loadingStyle);
 
@@ -54,20 +51,20 @@ const PostShow = () => {
         <span>By {filteredPost.user.name} </span>
       </CardTitleContainer>
       <CardBody onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
-        <BackButton history={history} isBackButtonVisible={isBackButtonVisible}/>
+        <Load.BackButton history={history} isBackButtonVisible={isBackButtonVisible}/>
         <CardMainImage expand
           onClick={() => {
             window.open(`${urlPrefix}${filteredPost.file[0].key}`)
           }}
         >
-          <Image imgKey={filteredPost.file[0].key}/>
-          <MoreImagesList post={filteredPost} width={'450px'} maxHeight={'500px'} urlPrefix={urlPrefix}/>
+          <Load.Image imgKey={filteredPost.file[0].key}/>
+          <Load.MoreImagesList post={filteredPost} width={'450px'} maxHeight={'500px'} urlPrefix={urlPrefix}/>
         </CardMainImage>
         <DescriptionDiv>Description</DescriptionDiv>
         <div>{filteredPost.description}</div>
-        <CommentsList currentPost={filteredPost} currentUserId={currentUserId}/>
+        <Load.CommentsList currentPost={filteredPost} currentUserId={currentUserId}/>
       </CardBody>
-      <CommentModal/>
+      <Load.CommentModal/>
     </Container>
   );
 };

@@ -19,24 +19,21 @@ import {
   CartTitleRightSection,
 } from "./all-posts.styles";
 import Image from "./image.component";
-import MoreImagesList from "./moreImagesList.component";
 import {Link} from "react-router-dom";
-import CommentModal from "../../comment/comment-modal.component";
 import {useDispatch, useSelector} from "react-redux";
 import {commentCreateStart} from "../../../../redux/blog/comment/comment.actions";
-import CommentsPopOver from "../../comment/comments-popover.component";
 import LoadingOutlined from "@ant-design/icons/lib/icons/LoadingOutlined";
 import EditOutlined from "@ant-design/icons/lib/icons/EditOutlined";
 import withIcon from "../../../../withIcon";
-import EditModal from "../post-edit/post-edit-modal";
 import {editPostsStart} from "../../../../redux/blog/post/post.actions";
-import PostDeletePopOver from "../post-delete/post-delete-popover";
 import {Badge} from "antd";
-
+import * as Load from '../../load';
 const LoadingIcon = withIcon(LoadingOutlined, loadingStyle);
 const EditIcon = withIcon(EditOutlined, editStyle);
 
-const AllPostsList = ({membersEmails} ) => {
+
+
+const AllPostsList = ({membersEmails}) => {
   const user = useSelector(state => state.user);
   const {sub} = user;
   const {allPosts, loading} = useSelector(state => state.post);
@@ -65,8 +62,8 @@ const AllPostsList = ({membersEmails} ) => {
                     <div onClick={() => dispatch(editPostsStart(post))}>
                       <EditIcon/>
                     </div>
-                    <EditModal />
-                    <PostDeletePopOver postId={post.id}/>
+                    <Load.EditModal/>
+                    <Load.PostDeletePopOver postId={post.id}/>
                   </CartTitleRightSection>}
                 </CardTitleContainer>
 
@@ -76,7 +73,7 @@ const AllPostsList = ({membersEmails} ) => {
                       <Image imgKey={post.file[0].key} width={'450px'} maxHeight={'500px'}/>
                     </CardMainImage>
                     <CardSmallImages>
-                      <MoreImagesList post={post} height={'90px'} width={'90px'}/>
+                      <Load.MoreImagesList post={post} height={'90px'} width={'90px'}/>
                     </CardSmallImages>
                     <DescriptionDiv>Description</DescriptionDiv>
                     {post.description}
@@ -86,7 +83,7 @@ const AllPostsList = ({membersEmails} ) => {
                 <CardFooter>
                   <CardFooterContainer>
                     <CommentsLink>
-                      <CommentsPopOver post={post}/>
+                      <Load.CommentsPopOver post={post}/>
                     </CommentsLink>
                     <ReplyLink onClick={() => dispatch(commentCreateStart(post))}>
                       <ImgIcon src={'/reply.png'}/> reply
@@ -98,7 +95,7 @@ const AllPostsList = ({membersEmails} ) => {
             ))}
         </>
       }
-      <CommentModal user={user} membersEmails={membersEmails}/>
+      <Load.CommentModal user={user} membersEmails={membersEmails}/>
     </>
   );
 };

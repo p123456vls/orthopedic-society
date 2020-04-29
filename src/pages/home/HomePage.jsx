@@ -19,7 +19,7 @@ const Home = () => {
     <>
       <MainSection>
         <LazyLoadImage
-          src={'https://res.cloudinary.com/djagznbnb/image/upload/q_auto:low/v1584814573/vegasMeeting.png'}
+          src={'./vegasMeeting.png'}
           alt={'vegas meeting hippocratic society'}
           effect={'blur'}
           style={imageContainer}

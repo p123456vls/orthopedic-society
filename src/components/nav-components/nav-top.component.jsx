@@ -1,10 +1,13 @@
 import React from 'react';
-import LogoIcon from "../svg/LogoIcon";
-import NavSiteComponent from "./nav-site.component";
+import loadable from "@loadable/component";
 import {ContainerTop, Header, LogoContainer, SingOutField} from './nav.styles'
 import {useHistory} from 'react-router-dom';
 import {useSignOut} from "../../useSignOut";
 import {useSelector} from "react-redux";
+
+const LogoIcon = loadable(() => import(  "../svg/LogoIcon"));
+const NavSiteComponent = loadable(() => import( "./nav-site.component"));
+
 
 const NavTopComponent = () => {
   const history = useHistory();
