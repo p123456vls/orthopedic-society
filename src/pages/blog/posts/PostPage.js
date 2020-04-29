@@ -6,17 +6,17 @@ import MemberAuth from "../../../components/member-auth/member-auth.component";
 import {useSelector} from "react-redux";
 import AllPostsList from "../../../components/blog/post/all-posts/all-posts-list.component";
 
-const PostsPage = () => {
+const PostsPage = ({membersEmails}) => {
   const {isSignedIn} = useSelector(state => state.user);
 
   return isSignedIn ? (
     <Container>
       <Tabs defaultActiveKey={'1'} animated={false}>
         <Tabs.TabPane tab="All Cases" key={'1'}>
-          <AllPostsList/>
+          <AllPostsList membersEmails={membersEmails}/>
         </Tabs.TabPane>
         <Tabs.TabPane tab="New Case" key="2">
-          <NewPost/>
+          <NewPost membersEmails={membersEmails}/>
         </Tabs.TabPane>
       </Tabs>
     </Container>

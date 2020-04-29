@@ -16,7 +16,7 @@ import {CancelButton, Footer, ImagePreviewSection, SubmitButton, theme} from "..
 import ImagePreview from "./image-preview.component";
 
 
-const NewPost = () => {
+const NewPost = ({membersEmails}) => {
   const {
     state,
     handleCancel,
@@ -24,7 +24,7 @@ const NewPost = () => {
     handleChange,
     handleLoad,
     handlePick,
-  } = useNewPost();
+  } = useNewPost({membersEmails});
 
   return (
     <>
@@ -53,7 +53,6 @@ const NewPost = () => {
               value={state.description}
               name={'description'}
             />
-
             <PhotoPicker
               onLoad={handleLoad}
               preview='hidden'
@@ -62,20 +61,21 @@ const NewPost = () => {
             <ImagePreviewSection>
               <ImagePreview state={state}/>
             </ImagePreviewSection>
-
-            <Progress
-              style={state.progressUpload > 0 ? {visibility: 'visible'} : {visibility: 'hidden'}}
-              percent={Number(state.progressUpload.toFixed(0))}
-            />
-             <Footer>
-                <CancelButton onClick={handleCancel}>Cancel</CancelButton>
-                <SubmitButton onClick={handleOk}>Submit</SubmitButton>
-              </Footer>
+            <div style={state.progressUpload > 0 ? {visibility: 'visible'} : {visibility: 'hidden'}}>
+            <span style={{color:Colors.primary}}>Remaining pictures to upload: {state.imageCount }</span>
+              <Progress
+                percent={Number(state.progressUpload.toFixed(0))}
+              />
+            </div>
+            <Footer>
+              <CancelButton onClick={handleCancel}>Cancel</CancelButton>
+              <SubmitButton onClick={handleOk}>Submit</SubmitButton>
+            </Footer>
           </SectionBody>
         </FormSection>
       </FormContainer>
     </>
-);
+  );
 };
 
 export default NewPost;

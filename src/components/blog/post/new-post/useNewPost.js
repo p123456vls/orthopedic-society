@@ -9,7 +9,6 @@ import {goToAllPosts} from "../../helper";
 import {registerUserIfNotExists} from "../../graphql-helper";
 import {newPostsFailure, newPostsStart} from "../../../../redux/blog/post/post.actions";
 import {urlPrefix} from "../../../../constants/S3Bucket-url";
-import useMembers from "../../../members/useMembers";
 
 
 const initialState = {
@@ -25,8 +24,8 @@ const initialState = {
   imageCount: 0,
 };
 
-const useNewPost = () => {
-  const {membersData} = useMembers();
+const useNewPost = ({membersEmails}) => {
+
   const [state, setState] = useState(initialState);
   const user = useSelector(state => state.user);
   const {isSignedIn, sub, email, first_name, last_name} = user;
@@ -93,14 +92,14 @@ const useNewPost = () => {
               API.post('payments',
                 '/newcase', {
                   body: {
-                    allUsersEmail: membersData.map(item => item.email),
+                    allUsersEmail: membersEmails,
                     currentUser: user,
                     title,
                     url:`${urlPrefix}${input.file[0].key}`
                   }
                 })
                 .then(result => {
-                  console.log(result);
+                  // console.log(result);
                 })
                 .catch(e => console.log(e))
 

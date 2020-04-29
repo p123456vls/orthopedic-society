@@ -11,7 +11,7 @@ const config = {
 };
 
 // const allUsersEmailArray = req.body.allUsersEmail; //these are all users email
-const allUsersEmailArray = ['p.pp256@yahoo.com', 'p12345vls@gmail.com', 'p123456vls@gmail.com', 'pavlospapadonikolakis@yahoo.com']
+const allUsersTestEmailArray = [config.adminEmail,'p.pp256@yahoo.com', 'p12345vls@gmail.com', 'p123456vls@gmail.com', 'pavlospapadonikolakis@yahoo.com']
 
 const ses = new AWS.SES(config);
 
@@ -19,13 +19,12 @@ router.post('/newcase', (req, res) => {
   const {first_name, last_name, email} = req.body.currentUser;
   const title = req.body.title;
 
-  allUsersEmailArray.push(config.adminEmail);
-  allUsersEmailArray.push(email);
+  const testArrayEmails = [email,...allUsersTestEmailArray]
 
   ses.sendEmail({
     Source: config.adminEmail,
     Destination: {
-      ToAddresses: allUsersEmailArray
+      ToAddresses: testArrayEmails
     },
     Message: {
       Subject: {
@@ -79,13 +78,12 @@ router.post('/newcomment', (req, res) => {
   const {first_name, last_name, email} = req.body.currentUser;
   const title = req.body.title;
 
-  allUsersEmailArray.push(config.adminEmail);
-  allUsersEmailArray.push(email);
+  const testArrayEmails = [email,...allUsersTestEmailArray]
 
   ses.sendEmail({
     Source: config.adminEmail,
     Destination: {
-      ToAddresses: allUsersEmailArray
+      ToAddresses: testArrayEmails
     },
     Message: {
       Subject: {
@@ -114,7 +112,7 @@ router.post('/newcomment', (req, res) => {
                             Go to comment &#8594; 
                           </a>
                           <br>
-                 <br>
+                          <br>
                  <pre style="color: #2490ff;">Hippocratic Orthopedic Society, Inc</pre>
                 </div>
                  `

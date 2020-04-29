@@ -17,6 +17,7 @@ const useMembers = () => {
   const dispatch = useDispatch();
   const [membersData, setMembersData] = useState([]);
 
+
   useMemo(() => {
     const fetchTableData = async () => {
       dispatch(fetchDataTableBegin());
@@ -34,7 +35,7 @@ const useMembers = () => {
       }
     };
     fetchTableData();
-  }, [dispatch,isMounted]);
+  }, [dispatch, isMounted]);
 
 
   const handleChange = (e) => {
@@ -49,7 +50,8 @@ const useMembers = () => {
 
   return {
     handleChange,
-    membersData
+    membersData,
+    membersEmails: membersData.map(user => user.email)
   }
 };
 

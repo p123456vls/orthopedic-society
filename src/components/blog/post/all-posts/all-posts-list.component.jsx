@@ -36,8 +36,7 @@ import {Badge} from "antd";
 const LoadingIcon = withIcon(LoadingOutlined, loadingStyle);
 const EditIcon = withIcon(EditOutlined, editStyle);
 
-const AllPostsList = () => {
-
+const AllPostsList = ({membersEmails} ) => {
   const user = useSelector(state => state.user);
   const {sub} = user;
   const {allPosts, loading} = useSelector(state => state.post);
@@ -66,7 +65,7 @@ const AllPostsList = () => {
                     <div onClick={() => dispatch(editPostsStart(post))}>
                       <EditIcon/>
                     </div>
-                    <EditModal/>
+                    <EditModal />
                     <PostDeletePopOver postId={post.id}/>
                   </CartTitleRightSection>}
                 </CardTitleContainer>
@@ -99,7 +98,7 @@ const AllPostsList = () => {
             ))}
         </>
       }
-      <CommentModal user={user}/>
+      <CommentModal user={user} membersEmails={membersEmails}/>
     </>
   );
 };

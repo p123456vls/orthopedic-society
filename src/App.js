@@ -23,6 +23,7 @@ import useFetchPosts from "./components/blog/post/all-posts/useFetchPosts";
 
 import Amplify from 'aws-amplify';
 import aws_config from './aws-exports';
+import useMembers from "./components/members/useMembers";
 Amplify.configure(aws_config);
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
   useLoginStatus();
   useEvents();
   useFetchPosts();
+  const {membersEmails} = useMembers();
 
 
   return (
@@ -43,7 +45,7 @@ const App = () => {
         <Route path='/contact-us' ><ContactPage/></Route>
         <Route path='/hippocrates'><HippocratesPage/></Route>
         <Route path='/donate' ><DonatePage/></Route>
-        <Route exact path='/posts'><PostsPage/></Route>
+        <Route exact path='/posts'><PostsPage membersEmails={membersEmails}/></Route>
         <Route path={'/posts/:postId'}><PostShow/></Route>
       </Switch>
       <Footer/>

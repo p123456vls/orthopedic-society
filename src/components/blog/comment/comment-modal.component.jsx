@@ -7,16 +7,14 @@ import {createComment} from "../../../graphql/mutations";
 import {message} from 'antd';
 import {Title} from "../post/post-edit/post-edit.styles";
 import {urlPrefix} from "../../../constants/S3Bucket-url";
-import useMembers from "../../members/useMembers";
 
 
-const CommentModal = ({user}) => {
+const CommentModal = ({membersEmails}) => {
 
+  const user = useSelector(state => state.user);
   const dispatch = useDispatch();
   const {modalVisible, post} = useSelector(state => state.comment);
   const [state, setState] = useState({description: ''});
-  const {membersData} = useMembers();
-
 
   const handleOk = e => {
     e.preventDefault();
@@ -32,7 +30,7 @@ const CommentModal = ({user}) => {
       .then(result => {
         API.post('payments', '/newcomment', {
           body: {
-            allUsersEmail: membersData.map(item => item.email),
+            allUsersEmail: membersEmails,
             currentUser: user,
             title: post.title,
             url: `${urlPrefix}${post.file[0].key}`,

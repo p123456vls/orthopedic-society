@@ -19,6 +19,11 @@ export const countOccurrences = (a) => {
   }, {});
 }
 
+export const mergeUniqueArrayItems =(arr1,arr2) => {
+  let mergeArrays = arr1.concat(arr2);
+  return [...new Set([...mergeArrays])];
+}
+
 
 export const sortByDate = (items, isAssenting) => {
   return isAssenting ? items.sort((a, b) =>

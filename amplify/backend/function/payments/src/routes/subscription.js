@@ -57,7 +57,7 @@ const subscription = async (req, res) => {
   try {
     membershipSubscription = await stripe.subscriptions.create({
       customer: customer,
-      items: [{plan: 'plan_HAeZCwVCf2LNfI'}],
+      items: [{plan: 'plan_HB731lWxSOebOm'}],
       default_payment_method: paymentMethod,
       metadata: user
     });
