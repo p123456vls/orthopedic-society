@@ -3,4 +3,4 @@ AWS Amplify serverless react app with aws cognito authentication, aws lambda, st
 
 https://www.hippocraticsociety.org/
 
-<img src="capture1.gif" style="width:500px; height:500px; object-fit:"cover" />
+<img src="capture1.gif" style="width:500px; height:500px; object-fit:cover;" />
