@@ -2,3 +2,5 @@ AWS Amplify serverless react app with aws cognito authentication, aws lambda, st
 
 
 https://www.hippocraticsociety.org/
+
+<img src="capture1.gif" />
